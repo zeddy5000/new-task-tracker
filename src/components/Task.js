@@ -7,8 +7,7 @@ const Task = ({task,onDelete,onToggle}) => {
         <h3>{task.text}</h3>
         <p>{task.date}</p>
         </div>
-        <i class="fa-solid fa-trash" onClick={()=>onDelete(task.id)} style={{color:'black',cursor:'pointer'}}></i>
-       
+        <i class="fa-solid fa-trash" onClick={()=>onDelete(task.id)} style={{color:'black ',cursor:'pointer'}}></i>  
     </div>
   )
 }

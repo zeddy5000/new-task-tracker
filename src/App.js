@@ -1,36 +1,31 @@
 import React from 'react';
 import Header  from './components/Header';
 import Tasks from './components/Tasks';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import AddTask from './components/AddTask';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
 const App = ()=>{
   const [tasks,setTasks] = useState([
-    {
-        id: 1,
-        text: 'Doctors Appointment',
-        date: 'January 2nd at 2:30pm',
-        reminder:true,
-    },
-    {
-        id: 2,
-        text: 'Fifa Match',
-        date: 'January 22nd at 2:30pm',
-        reminder:true,
-    },
-    {
-        id: 3,
-        text: 'Semicolon Party',
-        date: 'February 2nd at 2:30pm',
-        reminder:true,
-    },
 ])
+useEffect(()=>{
+  const getTasks = async ()=>{
+    const tasksFromServer = await fetchTasks()
+    setTasks(tasksFromServer)
+  }
+  getTasks()
+},[])
+const fetchTasks = async ()=>{
+  const res = await fetch('http://localhost:5000/tasks')
+  const data = await res.json()
+  return data
+}
 const [showAddTask,setShowAddTask] = useState(false)
 const addTask = (task)=>{
   const id = Math.floor(Math.random() *10000) + 1
-  console.log(id)
   const newTask = {id,...task}
   setTasks([...tasks,newTask])
 }

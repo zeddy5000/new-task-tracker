@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import propTypes from 'prop-types';
-import Button2 from './Button2';
+
 
 
 
